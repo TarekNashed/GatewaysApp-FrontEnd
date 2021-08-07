@@ -1,0 +1,112 @@
+<form class="form-horizontal" [formGroup]="gatewayForm" ngForm>
+  <u><h3>Gateways GRUD Operation</h3> </u>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Name of Gateway :</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        name="gateway"
+        class="form-control"
+        id="txtGatewayName"
+        formControlName="Name"
+        placeholder="Name of Gateway"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">SerialNo :</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="txtSerialNo"
+        formControlName="SerialNumer"
+        placeholder="SerialNumber"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">IP4Address:</label>
+    <div class="col-sm-10">
+      <input required 
+      name="ip4address"
+        type="text"
+        class="form-control"
+        id="txtIP4Address"
+        formControlName="IP4Address"
+        placeholder="255.255.255.100"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="PostGateway(gatewayForm.value)"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="col-sm">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="UpdateGateway(gatewayForm.value)"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="alert alert-info"><b>Gateway List</b></div>
+    <div class="table-responsive">
+      <table class="table">
+        <tr >
+          <th>Gateway Name</th>
+          <th>Serial No</th>
+          <th>IP4Address</th>
+          <th>Action</th>
+        </tr>
+        <tr  *ngFor="let e of lis" style="padding-top: 2px">
+          <td>{{ e.name }}</td>
+          <td>{{ e.serialNumer }}</td>
+          <td>{{ e.iP4Address }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary"
+              matTooltip="Click Edit Button"
+              (click)="GatewayDetailsToEdit(e.id)"
+            >
+              Edit
+            </button>
+            |
+            <button
+              type="button"
+              class="btn btn-warning"
+              matTooltip="Click Delete Button"
+              (click)="DeleteGateway(e.id)"
+            >
+              Delete
+            </button>
+             <!--|
+           <button type="button"
+              class="btn btn-success"
+              (click)="GetGatewayDevicesById(e.id)"
+            >Show Devices
+            </button>-->
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</form>
+
+
+
+

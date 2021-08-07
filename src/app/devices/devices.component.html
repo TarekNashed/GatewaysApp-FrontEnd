@@ -1,0 +1,68 @@
+<form class="form-horizontal" [formGroup]="deviceForm">
+    <u><h3>Devices GRUD Operation</h3> </u>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">UID :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="txtUID" formControlName="uid"
+          placeholder="UID">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Vendor :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="txtVendor" formControlName="vendor" placeholder="Vendor Name">
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Gateway :</label>
+        <select formControlName="gatewayId" class="btn btn-secondary dropdown-toggle"  >
+          <!--<option value="default">Select gateway</option>!-->
+          <option *ngFor="let g of gateways" [value]="g.id">{{g.name}}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Status :</label>
+        <div class="col-sm-2">
+          <input type="checkbox" id="radioStatus" formControlName="status">
+        </div>
+      </div>
+     <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <button type="submit" class="btn btn-success" (click)="PostDevice(deviceForm.value)">Submit</button> 
+          </div>
+          <div class="col-sm">
+            <button type="submit" class="btn btn-primary" (click)="UpdateDevice(deviceForm.value)">Update</button>
+          </div>
+        
+        </div>
+      </div>
+  
+    </div>
+    <div>
+      <div class="alert alert-info"><b>Devices List</b></div>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th>UID</th>
+            <th>Vendor</th>
+            <th>Status</th>
+            <th>Gateway</th>
+            <th>CreatedDate</th>
+          </tr>
+          <tr *ngFor="let e of lis;" style="padding-top: 2px;">
+            <td>{{e.uid}}</td>
+            <td>{{e.vendor}}</td>
+            <td>{{e.status ? "Online" : "OFffline"}}</td>
+            <td>{{e.gateway}}</td>
+            <td>{{e.createdDate}}</td>
+            <td><button type="button" class="btn btn-primary" matTooltip="Click Edit Button" (click)='DeviceDetailsToEdit(e.id)'>Edit</button>
+              |
+              <button type="button" class="btn btn-warning" matTooltip="Click Delete Button" (click)="DeleteDevice(e.id)">Delete</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </form>
