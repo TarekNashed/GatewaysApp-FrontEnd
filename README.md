@@ -1,4 +1,4 @@
-# Change Port number in the front end service
+# Change Port number in the frontend service
 please change the port number 44320 to your port number in the below 2 links:
  1:- in gateway-service.service.ts file=> url = 'https://localhost:44320/api/Gateways/';
  2:- in device-service.service.ts file=> url = 'https://localhost:44320/api/Devices/';
